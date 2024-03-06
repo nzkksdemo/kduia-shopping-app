@@ -2,9 +2,9 @@ import React, { createContext, useReducer } from 'react';
 
 export const AppReducer = (state, action) => {
     switch (action.type) {
-        case value:
+        // case value:
             
-            return {...state};
+        //     return {...state};
     
         default:
             return {...state};
@@ -40,6 +40,7 @@ export const AppProvider = ({children}) => {
                 CartValue: state.CartValue,
                 Location: state.Location,
                 dispatch
+                
             }}
         >
             {children}
