@@ -27,10 +27,17 @@ export const AppContext = () => createContext();
 export const AppProvider = ({children}) => {
     const {state, dispatch} = useReducer(AppReducer, initialState);
 
+    const totalExpenses = state.expenses.reduce((total, item) => {
+        return (total = total + (item.unitPrice * item.quantity));
+    }, 0);
+
+    state.CartValue = totalExpenses;
+
     return (
         <AppContext.Provider 
             value={{
                 expenses: state.expenses,
+                CartValue: state.CartValue,
                 Location: state.Location,
                 dispatch
             }}
