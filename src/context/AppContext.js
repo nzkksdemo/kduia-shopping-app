@@ -2,12 +2,9 @@ import React, { createContext, useReducer } from 'react';
 
 export const AppReducer = (state, action) => {
     switch (action.type) {
-        // case value:
-            
-        //     return {...state};
     
         default:
-            return {...state};
+            return state;
     }
 }
 
@@ -24,8 +21,8 @@ const initialState = {
 
 export const AppContext = () => createContext();
 
-export const AppProvider = ({children}) => {
-    const {state, dispatch} = useReducer(AppReducer, initialState);
+export const AppProvider = (props) => {
+    const [state, dispatch] = useReducer(AppReducer, initialState);
 
     const totalExpenses = state.expenses.reduce((total, item) => {
         return (total = total + (item.unitPrice * item.quantity));
@@ -34,16 +31,16 @@ export const AppProvider = ({children}) => {
     state.CartValue = totalExpenses;
 
     return (
-        <AppContext.Provider 
+        <AppContext.Provider
             value={{
                 expenses: state.expenses,
                 CartValue: state.CartValue,
-                Location: state.Location,
-                dispatch
+                dispatch,
+                Location: state.Location
                 
             }}
         >
-            {children}
+            {props.children}
         </AppContext.Provider>
     );
 };
