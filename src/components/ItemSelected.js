@@ -5,7 +5,7 @@ const ItemSelected = () => {
     const { dispatch} = useContext(AppContext);
 
     const [name, setName] = useState('');
-    const [quantity, setQuantity] = useState('');
+    const [quantity, setQuantity] = useState(0);
     const [action, setAction] = useState('');    
 
     const submitEvent = () => {

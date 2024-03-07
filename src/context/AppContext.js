@@ -5,11 +5,9 @@ export const AppReducer = (state, action) => {
 
     switch (action.type) {
         case 'ADD_QUANTITY':
-            let updatedQty = false;
             state.expenses.map((expense)=>{
                 if(expense.name === action.payload.name) {
-                    expense.quantity = expense.quantity + action.payload.quantity;
-                    updatedQty = true;
+                    expense.quantity = parseInt(expense.quantity) + parseInt(action.payload.quantity);
                 }
                 new_expenses.push(expense);
                 return true;
@@ -25,7 +23,7 @@ export const AppReducer = (state, action) => {
                 if(expense.name === action.payload.name) {
                     expense.quantity = expense.quantity - action.payload.quantity;
                 }
-                expense.quantity = expense.quantity < 0 ? 0: expense.quantity;
+                expense.quantity = parseInt(expense.quantity) < 0 ? 0: parseInt(expense.quantity);
                 new_expenses.push(expense);
                 return true;
             })
@@ -76,9 +74,10 @@ export const AppProvider = (props) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     const totalExpenses = state.expenses.reduce((total, item) => {
-        return (total = total + (item.unitPrice * item.quantity));
+        return (total = parseInt(total) + (parseInt(item.unitPrice) * parseInt(item.quantity)));
     }, 0);
 
+    console.log(totalExpenses);
     state.CartValue = totalExpenses;
 
     return (
