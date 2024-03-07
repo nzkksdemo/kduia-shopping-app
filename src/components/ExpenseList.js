@@ -17,13 +17,12 @@ const ExpenseList = () => {
                 </tr>
             </thead>
             <tbody>
-                {expenses.map(expense => (
-                    <ExpenseItem 
+                {expenses.map(expense => (<ExpenseItem 
                         id={expense.id} 
                         key={expense.id} 
                         name={expense.name}
-                        quantity={parseInt(expense.quantity)}
-                        unitPrice={parseInt(expense.unitPrice)}
+                        quantity={expense.quantity}
+                        unitPrice={expense.unitPrice}
                     />
                 ))}
             </tbody>

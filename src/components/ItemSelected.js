@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 
-const ItemSelected = (props) => {
+const ItemSelected = () => {
     const { dispatch} = useContext(AppContext);
 
     const [name, setName] = useState('');
@@ -11,7 +11,7 @@ const ItemSelected = (props) => {
     const submitEvent = () => {
         const item = {
             name: name,
-            quantity: parseInt(quantity),
+            quantity: quantity,
         };
 
         if(action === "Reduce") {
