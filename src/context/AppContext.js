@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+minorimport React, { createContext, useReducer } from 'react';
 
 export const AppReducer = (state, action) => {
     let new_expenses = [];
@@ -8,7 +8,7 @@ export const AppReducer = (state, action) => {
             let updatedqty = false;
             state.expenses.map((expense)=>{
                 if(expense.name === action.payload.name) {
-                    expense.quantity = expense.quantity + action.payload.quantity;
+                    expense.quantity = parseInt(expense.quantity) + parseInt(action.payload.quantity);
                     updatedqty = true;
                 }
                 new_expenses.push(expense);
@@ -23,9 +23,9 @@ export const AppReducer = (state, action) => {
         case 'RED_QUANTITY':
             state.expenses.map((expense)=>{
                 if(expense.name === action.payload.name) {
-                    expense.quantity = expense.quantity - action.payload.quantity;
+                    expense.quantity = parseInt(expense.quantity) - parseInt(action.payload.quantity);
                 }
-                expense.quantity = expense.quantity < 0 ? 0: expense.quantity;
+                expense.quantity = parseInt(expense.quantity) < 0 ? 0: parseInt(expense.quantity);
                 new_expenses.push(expense);
                 return true;
             })
@@ -76,7 +76,7 @@ export const AppProvider = (props) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     const totalExpenses = state.expenses.reduce((total, item) => {
-        return (total = total + (item.unitprice*item.quantity));
+        return (total = parseInt(total) + (parseInt(item.unitprice) * parseInt(item.quantity)));
     }, 0);
 
     state.CartValue = totalExpenses;

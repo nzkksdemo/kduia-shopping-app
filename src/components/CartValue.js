@@ -5,7 +5,7 @@ const CartValue = () => {
     const {expenses, Location} = useContext(AppContext);
 
     const totalExpenses = expenses.reduce((total, item) => {
-        return (total += (item.unitPrice * item.quantity));
+        return (total = parseInt(total) + (parseInt(item.unitprice) * parseInt(item.quantity)));
     }, 0);
 
     return (

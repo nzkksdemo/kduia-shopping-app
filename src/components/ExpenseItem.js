@@ -3,6 +3,7 @@ import { AppContext } from '../context/AppContext';
 import { FaTimesCircle } from 'react-icons/fa';
 
 const ExpenseItem = ({name, quantity, unitPrice}) => {
+    console.log(name, quantity, unitPrice);
     const {dispatch, Location} = useContext(AppContext);
 
     const handleDeleteItem = () => {
@@ -13,7 +14,7 @@ const ExpenseItem = ({name, quantity, unitPrice}) => {
     return (
         <tr>
             <td>{name}</td>
-            <td>{quantity}</td>
+            <td>{parseInt(quantity)}</td>
             <td>{Location}{parseInt(unitPrice)}</td>
             <td>{Location}{parseInt(unitPrice) * parseInt(quantity)}</td>
             <td><FaTimesCircle size="2.2em" color="red" onClick={handleDeleteItem} /></td>

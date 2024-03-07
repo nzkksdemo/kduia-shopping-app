@@ -22,8 +22,8 @@ const ExpenseList = () => {
                         id={expense.id} 
                         key={expense.id} 
                         name={expense.name}
-                        quantity={expense.quantity}
-                        unitPrice={expense.unitPrice}
+                        quantity={parseInt(expense.quantity)}
+                        unitPrice={parseInt(expense.unitPrice)}
                     />
                 ))}
             </tbody>
